@@ -5,6 +5,15 @@ public class Client {
 	private String name;
 	private String lastName;
 	private String address;
+	private long zipCode;
+
+	public long getZipCode() {
+		return zipCode;
+	}
+
+	public void setZipCode(long zipCode) {
+		this.zipCode = zipCode;
+	}
 
 	public int getId() {
 		return id;
