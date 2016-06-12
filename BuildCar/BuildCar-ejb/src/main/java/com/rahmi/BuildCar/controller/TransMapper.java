@@ -11,10 +11,7 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-
 import com.rahmi.BuildCar.model.Transmission;
-
-
 
 public class TransMapper {
 	@PersistenceContext
@@ -36,8 +33,6 @@ public class TransMapper {
 	public void setEm(EntityManager em) {
 		this.em = em;
 	}
-
-	
 
 	@Inject
 	Transmission transmission;
@@ -76,11 +71,15 @@ public class TransMapper {
 		return em.merge(transmission);
 	}
 
+	public void flush() {
+		getEm().flush();
+	}
+
 	public void remove(Long id) {
 		Transmission transmission = getById(id);
 		if (transmission == null)
 			return;
 		em.remove(transmission);
 	}
-	
+
 }

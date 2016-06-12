@@ -3,7 +3,6 @@ package com.rahmi.BuildCar.controller;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -11,17 +10,17 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import com.rahmi.BuildCar.model.Car;
 
-import com.rahmi.BuildCar.model.Engine;
 
-public class EngineMapper {
+public class CarMapper {
 	@PersistenceContext
 	private EntityManager em;
 
-	public EngineMapper() {
+	public CarMapper() {
 	}
 
-	public EngineMapper(EntityManager em) {
+	public CarMapper(EntityManager em) {
 		this.em = em;
 	}
 
@@ -34,19 +33,19 @@ public class EngineMapper {
 	}
 
 	@Inject
-	Engine engine;
+	Car car;
 
-	public List<Engine> getAll() {
+	public List<Car> getAll() {
 		CriteriaBuilder cb = em.getCriteriaBuilder();
-		CriteriaQuery<Engine> q = cb.createQuery(Engine.class);
-		Root<Engine> c = q.from(Engine.class);
+		CriteriaQuery<Car> q = cb.createQuery(Car.class);
+		Root<Car> c = q.from(Car.class);
 		q.select(c);
-		TypedQuery<Engine> query = em.createQuery(q);
+		TypedQuery<Car> query = em.createQuery(q);
 		return query.getResultList();
 	}
 
-	public Engine getResultByNamedQuery(String queryName, Map<String, Object> items) {
-		TypedQuery<Engine> query = em.createNamedQuery(queryName, Engine.class);
+	public Car getResultByNamedQuery(String queryName, Map<String, Object> items) {
+		TypedQuery<Car> query = em.createNamedQuery(queryName, Car.class);
 		for (Entry<String, Object> e : items.entrySet()) {
 			query.setParameter(e.getKey(), e.getValue());
 		}
@@ -54,20 +53,20 @@ public class EngineMapper {
 
 	}
 
-	public Engine getById(long id) {
-		return em.find(Engine.class, id);
+	public Car getById(long id) {
+		return em.find(Car.class, id);
 	}
 
-	public void persist(Engine engine) {
-		em.persist(engine);
+	public void persist(Car car) {
+		em.persist(car);
 	}
 
-	public void refresh(Engine engine) {
-		em.refresh(engine);
+	public void refresh(Car car) {
+		em.refresh(car);
 	}
 
-	public Engine save(Engine engine) {
-		return getEm().merge(engine);
+	public Car save(Car car) {
+		return getEm().merge(car);
 	}
 
 	public void flush() {
@@ -75,9 +74,9 @@ public class EngineMapper {
 	}
 
 	public void remove(Long id) {
-		Engine engine = getById(id);
-		if (engine == null)
+		Car car = getById(id);
+		if (car == null)
 			return;
-		em.remove(engine);
+		em.remove(car);
 	}
 }
