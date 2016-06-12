@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 
+import com.rahmi.BuildCar.model.Engine;
 import com.rahmi.BuildCar.model.Member;
 
 // The @Stateful annotation eliminates the need for manual transaction demarcation
@@ -28,26 +29,36 @@ public class MemberRegistration {
    @Inject
    private EntityManager em;
 
-   @Inject
-   private Event<Member> memberEventSrc;
-
-   private Member newMember;
-
-   @Produces
-   @Named
-   public Member getNewMember() {
-      return newMember;
-   }
-
-   public void register() throws Exception {
-      log.info("Registering " + newMember.getName());
-      em.persist(newMember);
-      memberEventSrc.fire(newMember);
-      initNewMember();
-   }
-
-   @PostConstruct
-   public void initNewMember() {
-      newMember = new Member();
-   }
+  @Inject
+  Engine engine;
+  public Engine createEngine(){
+	  
+	return engine;
+	  
+  }
+   
+   
+   
+   
+   
+//
+//   private Member newMember;
+//
+//   @Produces
+//   @Named
+//   public Member getNewMember() {
+//      return newMember;
+//   }
+//
+//   public void register() throws Exception {
+//      log.info("Registering " + newMember.getName());
+//      em.persist(newMember);
+//      memberEventSrc.fire(newMember);
+//      initNewMember();
+//   }
+//
+//   @PostConstruct
+//   public void initNewMember() {
+//      newMember = new Member();
+//   }
 }

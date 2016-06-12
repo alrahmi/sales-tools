@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -11,7 +13,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @XmlRootElement
-public class Engine  {
+@NamedQueries({ 
+	    @NamedQuery(name = "", query = "select c from Engine c"),
+		@NamedQuery(name = "", query = "select c from Engine c where c.power= :power"),
+		@NamedQuery(name = "", query = "select c from Engine c") })
+public class Engine {
 	@Id
 	@GeneratedValue
 	private long id;
@@ -53,7 +59,7 @@ public class Engine  {
 		this.power = power;
 	}
 
-	@Column
+	@Column(unique = true)
 	@XmlElement
 	@JsonProperty
 	public String getSerialNumber() {

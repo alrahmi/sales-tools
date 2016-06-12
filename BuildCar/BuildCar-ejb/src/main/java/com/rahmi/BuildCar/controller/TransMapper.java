@@ -72,7 +72,7 @@ public class TransMapper {
 	}
 
 	public void flush() {
-		getEm().flush();
+		em.flush();
 	}
 
 	public void remove(Long id) {

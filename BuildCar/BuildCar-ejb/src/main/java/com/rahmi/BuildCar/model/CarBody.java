@@ -4,12 +4,19 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @XmlRootElement
+@NamedQueries({
+	@NamedQuery(name="",query="select c from CarBody c"),
+	@NamedQuery(name="",query="select c from CarBody c where c.color= :color"),
+	@NamedQuery(name="",query="select c from CarBody c")})
+
 public class CarBody  {
 	@Id
 	@GeneratedValue
@@ -49,7 +56,7 @@ public class CarBody  {
 		this.numberOfDoors = numberOfDoors;
 	}
 
-	@Column
+	@Column(unique=true)
 	@JsonProperty
 	public String getVIN() {
 		return VIN;

@@ -45,7 +45,7 @@ public class EngineMapper {
 		return query.getResultList();
 	}
 
-	public Engine getResultByNamedQuery(String queryName, Map<String, Object> items) {
+	public Engine getOneResult(String queryName, Map<String, Object> items) {
 		TypedQuery<Engine> query = em.createNamedQuery(queryName, Engine.class);
 		for (Entry<String, Object> e : items.entrySet()) {
 			query.setParameter(e.getKey(), e.getValue());
