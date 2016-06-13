@@ -3,6 +3,8 @@ package com.rahmi.BuildCar.controller;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -11,8 +13,10 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import com.rahmi.BuildCar.model.Car;
+import com.rahmi.BuildCar.util.filter.CarBodyRequestForm;
+import com.rahmi.BuildCar.util.filter.CarRequestForm;
 
-
+@Stateless
 public class CarMapper {
 	@PersistenceContext
 	private EntityManager em;
@@ -32,16 +36,27 @@ public class CarMapper {
 		this.em = em;
 	}
 
-	@Inject
-	Car car;
-
-	public List<Car> getAll() {
+	public List<Car> getAll(CarRequestForm form) {
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		CriteriaQuery<Car> q = cb.createQuery(Car.class);
 		Root<Car> c = q.from(Car.class);
 		q.select(c);
+		if (form != null) {
+			if (form.getName() != null) {
+				q.where(c.get("name").in(form.getName()));
+			}
+			
+		}
 		TypedQuery<Car> query = em.createQuery(q);
+		if (form != null && form.getPage() > 0 && form.getLimit() != -1) {
+			int start = form.getPage() - 1;
+			start = start * form.getLimit();
+			query.setFirstResult(start);
+			query.setMaxResults(form.getLimit());
+		}
+
 		return query.getResultList();
+ 
 	}
 
 	public Car getResultByNamedQuery(String queryName, Map<String, Object> items) {
@@ -57,7 +72,7 @@ public class CarMapper {
 		return em.find(Car.class, id);
 	}
 
-	public void persist(Car car) {
+	public void create(Car car) {
 		em.persist(car);
 	}
 

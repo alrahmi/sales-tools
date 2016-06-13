@@ -4,15 +4,19 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import javax.inject.Inject;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import com.rahmi.BuildCar.model.Transmission;
 
+import com.rahmi.BuildCar.model.Transmission;
+import com.rahmi.BuildCar.util.filter.Sort;
+import com.rahmi.BuildCar.util.filter.Sort.orderType;
+import com.rahmi.BuildCar.util.filter.TransmissionRequestForm;
+@Stateless
 public class TransMapper {
 	@PersistenceContext
 	private EntityManager em;
@@ -34,15 +38,31 @@ public class TransMapper {
 		this.em = em;
 	}
 
-	@Inject
-	Transmission transmission;
 
-	public List<Transmission> getAll() {
+	public List<Transmission> getAll(TransmissionRequestForm form) {
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		CriteriaQuery<Transmission> q = cb.createQuery(Transmission.class);
 		Root<Transmission> c = q.from(Transmission.class);
 		q.select(c);
+		if(form!=null){
+			if(form.getType()!=null){
+				q.where(c.get("type").in(form.getType()));
+			}
+			if(form.getSerialNumber()!=null){
+				q.where(c.get("type").in(form.getSerialNumber()));
+			}
+		}
 		TypedQuery<Transmission> query = em.createQuery(q);
+		Sort sort = form.getSort();
+		if (sort != null) {
+			if (sort.getOrderType().equals(orderType.ASC)) {
+
+				q.orderBy(cb.asc(c.get(sort.getName())));
+
+			} else {
+				q.orderBy(cb.desc(c.get(sort.getName())));
+			}
+		}
 		return query.getResultList();
 	}
 
@@ -59,7 +79,7 @@ public class TransMapper {
 		return em.find(Transmission.class, id);
 	}
 
-	public void persist(Transmission transmission) {
+	public void create(Transmission transmission) {
 		em.persist(transmission);
 	}
 

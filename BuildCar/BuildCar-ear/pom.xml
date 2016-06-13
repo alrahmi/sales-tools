@@ -20,11 +20,19 @@
 		<dependency>
 			<groupId>com.rahmi</groupId>
 			<artifactId>BuildCar-web</artifactId>
+			<version>${project.version}</version>
 			<type>war</type>
 		</dependency>
 		<dependency>
 			<groupId>com.rahmi</groupId>
 			<artifactId>BuildCar-ejb</artifactId>
+			<version>${project.version}</version>
+			<type>ejb</type>
+		</dependency>
+			<dependency>
+			<groupId>com.rahmi</groupId>
+			<artifactId>BuildCar-rest</artifactId>
+			<version>${project.version}</version>
 			<type>ejb</type>
 		</dependency>
 	</dependencies>
@@ -63,6 +71,10 @@
 				<artifactId>jboss-as-maven-plugin</artifactId>
 				<configuration>
 					<skip>false</skip>
+					<hostname>127.0.0.1</hostname>
+					<username>ali</username>
+					<port>9999</port>
+					<password>241220</password>
 				</configuration>
 			</plugin>
 		</plugins>

@@ -1,33 +1,47 @@
 package com.rahmi.BuildCar.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import org.codehaus.jackson.annotate.JsonProperty;
+
+
 
 @Entity
 @XmlRootElement
-@NamedQueries({ 
-	    @NamedQuery(name = "", query = "select c from Engine c"),
-		@NamedQuery(name = "", query = "select c from Engine c where c.power= :power"),
-		@NamedQuery(name = "", query = "select c from Engine c") })
-public class Engine {
-	@Id
-	@GeneratedValue
+@XmlAccessorType(XmlAccessType.FIELD)
+@NamedQueries({ @NamedQuery(name = "findEngineByType", query = "select e from Engine e where e.type= :type"),
+		@NamedQuery(name = "findEngineByVolume", query = "select e from Engine e where e.volume= :volume"),
+		@NamedQuery(name = "findEngineByPower", query = "select e from Engine e where e.power= :power") })
+public class Engine implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	private long id;
 	private String type;
-	private float volume;
+	private double volume;
 	private double power;
 	private String serialNumber;
+	@Id
+	@GeneratedValue
+	@JsonProperty
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
 
 	@Column
-	@XmlElement
 	@JsonProperty
 	public String getType() {
 		return type;
@@ -38,18 +52,16 @@ public class Engine {
 	}
 
 	@Column
-	@XmlElement
 	@JsonProperty
-	public float getVolume() {
+	public double getVolume() {
 		return volume;
 	}
 
-	public void setVolume(float volume) {
+	public void setVolume(double volume) {
 		this.volume = volume;
 	}
 
 	@Column
-	@XmlElement
 	@JsonProperty
 	public double getPower() {
 		return power;
@@ -60,7 +72,6 @@ public class Engine {
 	}
 
 	@Column(unique = true)
-	@XmlElement
 	@JsonProperty
 	public String getSerialNumber() {
 		return serialNumber;

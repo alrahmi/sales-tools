@@ -15,7 +15,16 @@
 	<name>BuildCar EJB module</name>
 
 	<dependencies>
-
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.5.0</version>
+		</dependency>
+			<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jaxrs</artifactId>
+			<scope>provided</scope>
+		</dependency>
 		<!-- Declare the APIs we depend on and need for compilation. All of them 
 			are provided by JBoss AS 7 -->
 

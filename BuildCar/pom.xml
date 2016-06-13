@@ -19,11 +19,26 @@
 		<module>BuildCar-ejb</module>
 		<module>BuildCar-web</module>
 		<module>BuildCar-ear</module>
-		
+		<module>BuildCar-rest</module>
 	</modules>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<!-- JBoss dependency versions -->
+
+		<version.jboss.maven.plugin>7.4.Final</version.jboss.maven.plugin>
+		<version.jboss.bom>1.0.7.Final</version.jboss.bom>
+		<version.jboss.as>7.2.0.Final</version.jboss.as>
+		<!-- other plugin versions -->
+		<version.ear.plugin>2.6</version.ear.plugin>
+		<version.ejb.plugin>2.3</version.ejb.plugin>
+		<version.surefire.plugin>2.10</version.surefire.plugin>
+		<version.war.plugin>2.1.1</version.war.plugin>
+
+		<!-- maven-compiler-plugin -->
+		<maven.compiler.target>1.6</maven.compiler.target>
+		<maven.compiler.source>1.6</maven.compiler.source>
 	</properties>
 
 	<dependencyManagement>
@@ -43,16 +58,21 @@
 			<dependency>
 				<groupId>com.rahmi</groupId>
 				<artifactId>BuildCar-ejb</artifactId>
-				<version>0.0.1-SNAPSHOT</version>
+				<version>${project.version}</version>
 				<type>ejb</type>
 			</dependency>
-
+			<dependency>
+				<groupId>com.rahmi</groupId>
+				<artifactId>BuildCar-rest</artifactId>
+				<version>${project.version}</version>
+				<type>ejb</type>
+			</dependency>
 			<!-- Define the version of the WAR so that we don't need to repeat ourselves 
 				in every module -->
 			<dependency>
 				<groupId>com.rahmi</groupId>
 				<artifactId>BuildCar-web</artifactId>
-				<version>0.0.1-SNAPSHOT</version>
+				<version>${project.version}</version>
 				<type>war</type>
 				<scope>compile</scope>
 			</dependency>
@@ -139,6 +159,10 @@
 					<inherited>true</inherited>
 					<configuration>
 						<skip>true</skip>
+						<hostname>127.0.0.1</hostname>
+						<username>ali</username>
+						<port>9999</port>
+						<password>241220</password>
 					</configuration>
 				</plugin>
 			</plugins>
