@@ -1,6 +1,10 @@
 package com.rahmi.BuildCar.util.filter;
 
+import java.io.IOException;
+
 import javax.ws.rs.QueryParam;
+
+import org.codehaus.jackson.map.ObjectMapper;
 
 public class RequestForm {
 
@@ -31,8 +35,19 @@ public class RequestForm {
 	}
 
 	@QueryParam("sort")
-	public void setSort(Sort sort) {
-		this.sort = sort;
+	public void setSort(String sortJson) {
+		if (sortJson == null || sortJson == "") {
+			return;
+		}
+		ObjectMapper mapper = new ObjectMapper();
+		Sort sort;
+		try {
+			sort = mapper.readValue(sortJson, Sort.class);
+			this.sort = sort;
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

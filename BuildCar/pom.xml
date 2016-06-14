@@ -18,8 +18,8 @@
 	<modules>
 		<module>BuildCar-ejb</module>
 		<module>BuildCar-web</module>
-		<module>BuildCar-ear</module>
 		<module>BuildCar-rest</module>
+		<module>BuildCar-ear</module>
 	</modules>
 
 	<properties>
@@ -155,7 +155,7 @@
 				<plugin>
 					<groupId>org.jboss.as.plugins</groupId>
 					<artifactId>jboss-as-maven-plugin</artifactId>
-					<version>7.0.2.Final</version>
+					<version>7.4.Final</version>
 					<inherited>true</inherited>
 					<configuration>
 						<skip>true</skip>

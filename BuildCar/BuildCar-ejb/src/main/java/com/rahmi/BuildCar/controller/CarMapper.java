@@ -45,7 +45,7 @@ public class CarMapper {
 			if (form.getName() != null) {
 				q.where(c.get("name").in(form.getName()));
 			}
-			
+
 		}
 		TypedQuery<Car> query = em.createQuery(q);
 		if (form != null && form.getPage() > 0 && form.getLimit() != -1) {
@@ -56,7 +56,7 @@ public class CarMapper {
 		}
 
 		return query.getResultList();
- 
+
 	}
 
 	public Car getResultByNamedQuery(String queryName, Map<String, Object> items) {
@@ -93,5 +93,18 @@ public class CarMapper {
 		if (car == null)
 			return;
 		em.remove(car);
+	}
+
+	public Car update(Long id, Car newCar) {
+		Car car = getById(id);
+		if (car == null) {
+			return null;
+		}
+		car.setBody(newCar.getBody());
+		car.setEngine(newCar.getEngine());
+		car.setTransmission(newCar.getTransmission());
+		car.setName(newCar.getName());
+		save(car);
+		return car;
 	}
 }

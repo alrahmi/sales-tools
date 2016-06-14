@@ -9,27 +9,38 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.rahmi.BuildCar.model.Car;
+import com.rahmi.BuildCar.model.CarBody;
+import com.rahmi.BuildCar.model.Engine;
+import com.rahmi.BuildCar.model.Transmission;
 import com.rahmi.BuildCar.service.CarJSPService;
+import com.rahmi.BuildCar.util.filter.CarRequestForm;
 
 @WebServlet(name = "CarServlet", urlPatterns = "/CarServlet")
 public class CarServlet {
 	@EJB
-	CarJSPService dao;
+	CarMapper dao;
 
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String action = request.getParameter("action");
 		int id = Integer.parseInt(request.getParameter("id"));
 		String name = request.getParameter("name");
+		
+		Transmission transmission=new Transmission();
+		Engine engine=new Engine();
+		CarBody body=new CarBody();
 		Car car = new Car();
 		car.setId(id);
 		car.setName(name);
-		if ("creat".equalsIgnoreCase(action)) {
-			dao.createCar(car);
+		car.setEngine(engine);
+		car.setTransmission(transmission);
+		car.setBody(body);
+		if ("create".equalsIgnoreCase(action)) {
+			dao.create(car);;
 
 		} else if ("name".equalsIgnoreCase(action)) {
 			dao.getById(id);
 		}
-		request.setAttribute("car", dao.getAllCar());
+		request.setAttribute("car", dao.getAll(new CarRequestForm()));
 	}
 }

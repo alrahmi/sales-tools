@@ -14,22 +14,22 @@
 	<table>
 		<tr>
 			<td>Engines id</td>
-			<td><input type="text" name="engine id"  value="${engine.id}">
+			<td><input type="text" name="id"  value="${engine.id}">
 			</td>
 		</tr>
 		<tr>
 			<td>Engines type</td>
-			<td><input type="text" name="engine type" value="${engine.type}">
+			<td><input type="text" name="type" value="${engine.type}">
 			</td>
 		</tr>
 		<tr>
 			<td>Engines volume</td>
-			<td><input type="text" name="engine id" value="${engine.volume}">
+			<td><input type="text" name="volume" value="${engine.volume}">
 			</td>
 		</tr>
 		<tr>
 			<td>Engines power</td>
-			<td><input type="text" name="engine id" value="${engine.power}">
+			<td><input type="text" name="power" value="${engine.power}">
 			</td>
 		</tr>
 		<tr>
@@ -49,7 +49,7 @@
 		<th>power</th>
 		<th>serialNumber</th>
 		</tr>
-		<c:forEach items="getAll" var="engine">
+		<c:forEach items="${engines.getAll}" var="engine">
 			<tr>
 				<td>${engine.id}</td>
 				<td>${engine.type}</td>

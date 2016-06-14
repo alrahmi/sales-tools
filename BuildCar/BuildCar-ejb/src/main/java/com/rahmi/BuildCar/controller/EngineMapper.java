@@ -50,6 +50,9 @@ public class EngineMapper {
 			if (form.getPower() != null) {
 				q.where(c.get("power").in(form.getPower()));
 			}
+			if (form.getVolume() != null) {
+				q.where(c.get("volume").in(form.getVolume()));
+			}
 			if (form.getSerialNumber() != null) {
 				q.where(c.get("serialNumber").in(form.getSerialNumber()));
 			}
@@ -107,5 +110,18 @@ public class EngineMapper {
 		if (engine == null)
 			return;
 		em.remove(engine);
+	}
+
+	public Engine update(Long id, Engine newEngine) {
+		Engine engine = getById(id);
+		if (engine == null) {
+			return null;
+		}
+		engine.setType(newEngine.getType());
+		engine.setPower(newEngine.getPower());
+		engine.setSerialNumber(newEngine.getSerialNumber());
+		engine.setVolume(newEngine.getVolume());
+		save(engine);
+		return engine;
 	}
 }

@@ -18,7 +18,7 @@ import com.rahmi.BuildCar.model.CarBody;
 import com.rahmi.BuildCar.util.filter.CarBodyRequestForm;
 
 
-@Path("/rest/xml/carBody")
+@Path("/xml/carBody")
 @Produces(MediaType.APPLICATION_XML)
 @Consumes(MediaType.APPLICATION_XML)
 public class ResourceRestXMLCarBodyService {

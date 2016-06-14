@@ -25,11 +25,11 @@ import com.rahmi.BuildCar.model.Transmission;
 import com.rahmi.BuildCar.util.filter.CarBodyRequestForm;
 import com.rahmi.BuildCar.util.filter.RequestForm;
 
-@Path("/rest/json/carBody")
+@Path("/json/carBody")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class ResourceRestCarBodyService {
-	
+
 	@EJB
 	private BodyMapper bodyMapper;
 
@@ -49,8 +49,8 @@ public class ResourceRestCarBodyService {
 	@PUT
 	@Path("/{id}")
 	public CarBody updateCarBody(@PathParam("id") Long id, CarBody carBody) {
-		bodyMapper.refresh(carBody);
-		return carBody;
+		return bodyMapper.update(id, carBody);
+
 	}
 
 	@GET

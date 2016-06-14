@@ -18,7 +18,7 @@ import com.rahmi.BuildCar.controller.TransMapper;
 import com.rahmi.BuildCar.model.Transmission;
 import com.rahmi.BuildCar.util.filter.TransmissionRequestForm;
 
-@Path("/rest/xml/transmission")
+@Path("/xml/transmission")
 @Produces(MediaType.APPLICATION_XML)
 @Consumes(MediaType.APPLICATION_XML)
 public class ResourceRestXMLTransmissionService {

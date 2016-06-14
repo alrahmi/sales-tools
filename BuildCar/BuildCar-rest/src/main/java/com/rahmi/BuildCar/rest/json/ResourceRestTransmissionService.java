@@ -21,7 +21,7 @@ import com.rahmi.BuildCar.controller.TransMapper;
 import com.rahmi.BuildCar.model.Transmission;
 import com.rahmi.BuildCar.util.filter.TransmissionRequestForm;
 
-@Path("/rest/json/transmission")
+@Path("/json/transmission")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class ResourceRestTransmissionService {
@@ -46,8 +46,8 @@ public class ResourceRestTransmissionService {
 	@PUT
 	@Path("/{id}")
 	public Transmission updateTransmission(@PathParam("id") Long id, Transmission transmission) {
-		transMapper.refresh(transmission);
-		return transmission;
+		return transMapper.update(id,transmission);
+		
 	}
 
 	@GET

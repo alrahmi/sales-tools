@@ -16,6 +16,7 @@ import com.rahmi.BuildCar.model.Transmission;
 import com.rahmi.BuildCar.util.filter.Sort;
 import com.rahmi.BuildCar.util.filter.Sort.orderType;
 import com.rahmi.BuildCar.util.filter.TransmissionRequestForm;
+
 @Stateless
 public class TransMapper {
 	@PersistenceContext
@@ -38,17 +39,16 @@ public class TransMapper {
 		this.em = em;
 	}
 
-
 	public List<Transmission> getAll(TransmissionRequestForm form) {
 		CriteriaBuilder cb = em.getCriteriaBuilder();
 		CriteriaQuery<Transmission> q = cb.createQuery(Transmission.class);
 		Root<Transmission> c = q.from(Transmission.class);
 		q.select(c);
-		if(form!=null){
-			if(form.getType()!=null){
+		if (form != null) {
+			if (form.getType() != null) {
 				q.where(c.get("type").in(form.getType()));
 			}
-			if(form.getSerialNumber()!=null){
+			if (form.getSerialNumber() != null) {
 				q.where(c.get("type").in(form.getSerialNumber()));
 			}
 		}
@@ -100,6 +100,17 @@ public class TransMapper {
 		if (transmission == null)
 			return;
 		em.remove(transmission);
+	}
+
+	public Transmission update(Long id, Transmission newTransmission) {
+		Transmission transmission = getById(id);
+		if (transmission == null) {
+			return null;
+		}
+		transmission.setType(newTransmission.getType());
+		transmission.setSerialNumber(newTransmission.getSerialNumber());
+		save(transmission);
+		return transmission;
 	}
 
 }

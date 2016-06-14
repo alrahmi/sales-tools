@@ -10,11 +10,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.rahmi.BuildCar.model.CarBody;
 import com.rahmi.BuildCar.service.CarBodyJSPService;
+import com.rahmi.BuildCar.util.filter.CarBodyRequestForm;
 
 @WebServlet(name = "CarBodyServlet", urlPatterns = "/CarBodyServlet")
 public class CarBodyServlet {
 	@EJB
-	CarBodyJSPService doa;
+	BodyMapper dao;
 
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -29,16 +30,15 @@ public class CarBodyServlet {
 		body.setCountOfDoors(countOfDoors);
 		body.setVIN(VIN);
 		body.setType(type);
-		if ("create".equalsIgnoreCase(action))
-			doa.createCarBody(body);
-
-		else if ("update".equalsIgnoreCase(action)) {
-			doa.updateCarBody(body);
+		if ("create".equalsIgnoreCase(action)) {
+			dao.create(body);
+		} else if ("update".equalsIgnoreCase(action)) {
+			dao.update(id, body);
 
 		} else if ("getById".equalsIgnoreCase(action)) {
-			doa.getById(id);
+			dao.getById(id);
 		}
-		request.setAttribute("carBody", body);
-		request.setAttribute("All carBodys", doa.getAllCarBody());
+
+		request.setAttribute("body", dao.getAll(new CarBodyRequestForm()));
 	}
 }

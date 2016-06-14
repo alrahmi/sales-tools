@@ -18,7 +18,7 @@ import com.rahmi.BuildCar.controller.CarMapper;
 import com.rahmi.BuildCar.model.Car;
 import com.rahmi.BuildCar.util.filter.CarRequestForm;
 
-@Path("/rest/xml/cars")
+@Path("/xml/cars")
 @Produces(MediaType.APPLICATION_XML)
 @Consumes(MediaType.APPLICATION_XML)
 public class ResourceRestXMLCarService {

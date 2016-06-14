@@ -117,4 +117,17 @@ public class BodyMapper {
 		em.remove(body);
 	}
 
+	public CarBody update(Long id, CarBody newCarBody) {
+		CarBody body = getById(id);
+		if (body == null)
+			return null;
+		body.setType(newCarBody.getType());
+		body.setColor(newCarBody.getColor());
+		body.setCountOfDoors(newCarBody.getCountOfDoors());
+		body.setVIN(newCarBody.getVIN());
+		save(body);
+		return body;
+		
+	}
+
 }

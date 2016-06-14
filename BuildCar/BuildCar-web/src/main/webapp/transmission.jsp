@@ -23,17 +23,7 @@
 			</tr>
 			<tr>
 				<td>transmission color</td>
-				<td><input type="text" name="carBody id" value="${body.color}">
-				</td>
-			</tr>
-			<tr>
-				<td>transmission CountOfDoors</td>
-				<td><input type="text" name="carBody id"
-					value="${body.countOfDoors}"></td>
-			</tr>
-			<tr>
-				<td>Carbody VIN</td>
-				<td><input type="text" name="carBody id" value="${body.VIN}">
+				<td><input type="text" name="carBody id" value="${body.serialNumber}">
 				</td>
 			</tr>
 			<tr>
@@ -50,17 +40,13 @@
 		<tr>
 			<th>ID</th>
 			<th>type</th>
-			<th>color</th>
-			<th>countOfDoors</th>
-			<th>VIN</th>
+			<th>serialNumber</th>
 		</tr>
-		<c:forEach items="getAll" var="body">
+		<c:forEach items="${transmission.getAll}" var="transmission">
 			<tr>
-				<td>${body.id}</td>
-				<td>${body.type}</td>
-				<td>${body.color}</td>
-				<td>${body.countOfDoores}</td>
-				<td>${body.VIN}</td>
+				<td>${transmission.id}</td>
+				<td>${transmission.type}</td>
+				<td>${transmission.serialNumber}</td>
 			</tr>
 		</c:forEach>
 	</table>

@@ -4,7 +4,7 @@ import javax.ws.rs.QueryParam;
 
 public class EngineRequestForm extends RequestForm {
 	private String type;
-	private Float volume;
+	private Double volume;
 	private Double power;
 	private String serialNumber;
 
@@ -16,11 +16,11 @@ public class EngineRequestForm extends RequestForm {
 		this.type = type;
 	}
 
-	public float getVolume() {
+	public Double getVolume() {
 		return volume;
 	}
 	@QueryParam("volume")
-	public void setVolume(Float volume) {
+	public void setVolume(Double volume) {
 		this.volume = volume;
 	}
 

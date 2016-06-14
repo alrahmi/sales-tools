@@ -18,7 +18,7 @@ import com.rahmi.BuildCar.controller.EngineMapper;
 import com.rahmi.BuildCar.model.Engine;
 import com.rahmi.BuildCar.util.filter.EngineRequestForm;
 
-@Path("/rest/xml/engine")
+@Path("/xml/engine")
 @Produces(MediaType.APPLICATION_XML)
 @Consumes(MediaType.APPLICATION_XML)
 public class ResourceRestXMLEngineService {

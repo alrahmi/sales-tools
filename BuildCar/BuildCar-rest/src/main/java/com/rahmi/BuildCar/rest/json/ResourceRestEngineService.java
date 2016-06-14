@@ -21,7 +21,7 @@ import com.rahmi.BuildCar.controller.EngineMapper;
 import com.rahmi.BuildCar.model.Engine;
 import com.rahmi.BuildCar.util.filter.EngineRequestForm;
 
-@Path("/rest/json/engine")
+@Path("/json/engine")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class ResourceRestEngineService {
@@ -45,8 +45,8 @@ public class ResourceRestEngineService {
 	@PUT
 	@Path("/{id}")
 	public Engine updateEngine(@PathParam("id") Long id, Engine engine) {
-		engineMapper.refresh(engine);
-		return engine;
+		return engineMapper.update(id,engine);
+		
 	}
 
 	@GET

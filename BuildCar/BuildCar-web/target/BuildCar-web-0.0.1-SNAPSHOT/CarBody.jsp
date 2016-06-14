@@ -13,27 +13,26 @@
 		<table>
 			<tr>
 				<td>Carbody id</td>
-				<td><input type="text" name="carBody id" value="${body.id}">
-				</td>
+				<td><input type="text" name="id" value="${body.id}"></td>
 			</tr>
 			<tr>
 				<td>Carbody type</td>
-				<td><input type="text" name="carBody type" value="${body.type}">
+				<td><input type="text" name="type" value="${body.type}">
 				</td>
 			</tr>
 			<tr>
 				<td>Carbody color</td>
-				<td><input type="text" name="carBody id" value="${body.color}">
+				<td><input type="text" name="color" value="${body.color}">
 				</td>
 			</tr>
 			<tr>
 				<td>Carbody CountOfDoors</td>
-				<td><input type="text" name="carBody id"
+				<td><input type="text" name="countOfDoors"
 					value="${body.countOfDoors}"></td>
 			</tr>
 			<tr>
 				<td>Carbody VIN</td>
-				<td><input type="text" name="carBody id" value="${body.VIN}">
+				<td><input type="text" name="VIN" value="${body.VIN}">
 				</td>
 			</tr>
 			<tr>
@@ -54,7 +53,7 @@
 			<th>countOfDoors</th>
 			<th>VIN</th>
 		</tr>
-		<c:forEach items="getAll" var="body">
+		<c:forEach items="${body.getAll}" var="body">
 			<tr>
 				<td>${body.id}</td>
 				<td>${body.type}</td>

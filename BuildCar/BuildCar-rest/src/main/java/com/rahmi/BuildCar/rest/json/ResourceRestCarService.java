@@ -21,7 +21,7 @@ import com.rahmi.BuildCar.controller.CarMapper;
 import com.rahmi.BuildCar.model.Car;
 import com.rahmi.BuildCar.util.filter.CarRequestForm;
 
-@Path("/rest/json/cars")
+@Path("/json/cars")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class ResourceRestCarService {
@@ -45,8 +45,8 @@ public class ResourceRestCarService {
 	@PUT
 	@Path("/{id}")
 	public Car updateCar(@PathParam("id") Long id, Car car) {
-		carMapper.refresh(car);
-		return car;
+		return carMapper.update(id,car);
+		
 	}
 
 	@GET

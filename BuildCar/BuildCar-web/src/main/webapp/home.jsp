@@ -7,18 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="engine.jsp"> <input type="button" value="engine" />
-	</a>
-	<br>
-	<br>
-	<br>
-	<a href="transmission.jsp"> <input type="button"
-		value="transmission" />
-	</a>
-	<br>
-	<br>
-	<br>
-	<a href="carbody.jsp"> <input type="button" value="carbody" />
-	</a>
+
 </body>
 </html>
