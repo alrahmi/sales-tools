@@ -1,7 +1,6 @@
 package com.rahmi.BuildCar.model;
 
 import java.io.Serializable;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -9,10 +8,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.xml.bind.annotation.XmlRootElement;
-
 import org.codehaus.jackson.annotate.JsonProperty;
 import org.codehaus.jackson.map.annotate.JsonDeserialize;
-
 import com.rahmi.BuildCar.util.deserializer.CarBodyDeserializer;
 import com.rahmi.BuildCar.util.deserializer.EngineDeserializer;
 import com.rahmi.BuildCar.util.deserializer.TransmissionDeserializer;
