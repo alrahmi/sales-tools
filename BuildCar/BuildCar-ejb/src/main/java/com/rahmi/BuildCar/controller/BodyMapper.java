@@ -68,12 +68,11 @@ public class BodyMapper {
 				}
 			}
 		}
+		
 		TypedQuery<CarBody> query = em.createQuery(q);
 		if (form != null && form.getPage() > 0 && form.getLimit() != -1) {
 			int start = form.getPage() - 1;
-
 			start = start * form.getLimit();
-
 			query.setFirstResult(start);
 			query.setMaxResults(form.getLimit());
 		}
@@ -87,7 +86,6 @@ public class BodyMapper {
 			query.setParameter(e.getKey(), e.getValue());
 		}
 		return query.getResultList();
-
 	}
 
 	public CarBody getById(Long id) {
